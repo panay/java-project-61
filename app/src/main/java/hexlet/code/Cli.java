@@ -6,13 +6,21 @@ import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class Cli {
-    public static void sayHello() {
-        Scanner sc = new Scanner(in);
+    private static final Scanner SCANNER = new Scanner(in);
+    private static String username;
 
+    public static String getUsername() {
+        return username;
+    }
+
+    public static Scanner getScanner() {
+        return SCANNER;
+    }
+    public static void sayHello() {
         out.println("Welcome to the Brain Games!");
         out.println("May I have your name?");
-        String username = sc.next();
-        out.println("Hello, " + username + "!");
-        sc.close();
+        String name = SCANNER.next();
+        username = name;
+        out.printf("Hello, %s!", name);
     }
 }
