@@ -13,7 +13,6 @@ public class Cli {
         out.println("May I have your name?");
         String username = sc.next();
         out.println("Hello, " + username + "!");
-
         sc.close();
     }
 }
