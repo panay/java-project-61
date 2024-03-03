@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import  hexlet.code.Cli;
+import  hexlet.code.Engine;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,50 +9,32 @@ import static java.lang.System.out;
 public class Even {
     private static final String YES = "yes";
     private static final String NO = "no";
+    private static int digit;
 
     public static void play() {
         String title = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        String correctResult = "Correct!";
-        String congratsResult = String.format("Congratulations, %s!", Cli.getUsername());
-        String wrongResult = " is wrong answer ;(. Correct answer was ";
-        Scanner scanner = Cli.getScanner();
-
-        out.println(title);
-
-        int correctAnswerCount = 0;
-        final int randomNumbers = 3;
-        int[] digits = generateRandomNumbers(randomNumbers);
-        for (int digit : digits) {
-            correctAnswerCount++;
-            boolean isEven = digit % 2 == 0;
-            out.println("Question: " + digit);
-            String answer = scanner.next();
-            if (isEven && !answer.equals(YES)) {
-                out.printf("'%s' %s '%s'%n", answer, wrongResult, YES);
-                return;
-            } else if (!isEven && !answer.equals(NO)) {
-                out.printf("'%s' %s '%s'%n", answer, wrongResult, NO);
-                return;
-            }
-
-            out.println(correctResult);
-        }
-
-        if (correctAnswerCount == digits.length) {
-            out.println(congratsResult);
-        }
-
-        scanner.close();
+        Engine.play(title, Even::checkAnswer);
     }
 
-    private static int[] generateRandomNumbers(int size) {
+    private static void generateQuestion() {
         Random random = new Random();
-        int[] digits = new int[size];
+        digit = random.nextInt(100);
+        out.printf("Question: %s%n", digit);
+    }
 
-        for (int i = 0; i < size; i++) {
-            digits[i] = random.nextInt(100);
+    private static boolean checkAnswer(Scanner scanner) {
+        generateQuestion();
+
+        String answer = scanner.next();
+        String correctAnswer = digit % 2 == 0 ? YES : NO;
+        boolean isTrue = correctAnswer.equals(answer);
+
+        if (!isTrue) {
+            Engine.printWrong(answer, correctAnswer);
+        } else {
+            Engine.printCorrect();
         }
 
-        return digits;
+        return isTrue;
     }
 }
