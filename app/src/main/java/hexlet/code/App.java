@@ -12,8 +12,11 @@ import static java.lang.System.out;
 
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = Engine.getScanner();
-        int chosenGame = chooseGame(scanner);
+        int chosenGame = chooseGame();
+
+        if (chosenGame == 0) {
+            return;
+        }
 
         switch (chosenGame) {
             case 1:
@@ -34,11 +37,12 @@ public class App {
                 Prime.play();
                 break;
             default:
-                scanner.close();
+                Engine.sayHello();
         }
     }
 
-    private static int chooseGame(Scanner scanner) {
+    private static int chooseGame() {
+        Scanner scanner = Engine.getScanner();
         out.println("Please enter the game number and press Enter.");
         out.println("1 – Greet");
         out.println("2 – Even");
@@ -49,6 +53,10 @@ public class App {
         out.println("0 – Exit");
         final int gameNum = scanner.nextInt();
         out.println("Your choice: " + gameNum);
+
+        if (gameNum == 0) {
+            scanner.close();
+        }
 
         return gameNum;
     }
