@@ -7,45 +7,37 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Calc {
+public class GCD {
     private static int firstOperand;
     private static int secondOperand;
-    private static char operation;
-    private static final char[] OPERATIONS = {'+', '-', '*'};
-
     public static void play() {
-        String title = "What is the result of the expression?";
-        Engine.play(title, Calc::checkAnswer);
+        String title = "Find the greatest common divisor of given numbers.";
+        Engine.play(title, GCD::checkAnswer);
     }
 
     private static void generateQuestion() {
         Random random = new Random();
 
-        int operationIndex = random.nextInt(OPERATIONS.length);
-        firstOperand = random.nextInt(25);
-        secondOperand = random.nextInt(25);
-        operation = OPERATIONS[operationIndex];
-        out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
+        firstOperand = random.nextInt(50);
+        secondOperand = random.nextInt(50);
+        out.printf("Question: %s %s%n", firstOperand, secondOperand);
+    }
+
+    private static int calcGCD() {
+        while (secondOperand != 0) {
+            int temp = secondOperand;
+            secondOperand = firstOperand % secondOperand;
+            firstOperand = temp;
+        }
+        return firstOperand;
     }
 
     private static boolean checkAnswer(Scanner scanner) {
         generateQuestion();
 
         String answer = scanner.next();
-        int correctAnswer = 0;
+        int correctAnswer = calcGCD();
         boolean isTrue = false;
-        switch (operation) {
-            case '+':
-                correctAnswer = firstOperand + secondOperand;
-                break;
-            case '-':
-                correctAnswer = firstOperand - secondOperand;
-                break;
-            case '*':
-                correctAnswer = firstOperand * secondOperand;
-                break;
-            default:
-        }
         try {
             isTrue = Integer.parseInt(answer, 10) == correctAnswer;
 

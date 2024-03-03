@@ -3,3 +3,4 @@
 
 1. [Even game asciinema](https://asciinema.org/a/TT1q86cOVJAL9xh6ZEevVvru7)
 2. [Calc game asciinema](https://asciinema.org/a/jomaYTFFYmlZWHQ33vELrtlkU)
+3. [GCD game asciinema](https://asciinema.org/a/fx0BT3dXtoRXs2MleXwZuCcC0)
