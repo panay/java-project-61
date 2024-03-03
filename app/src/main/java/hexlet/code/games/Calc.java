@@ -22,8 +22,9 @@ public class Calc {
         Random random = new Random();
 
         int operationIndex = random.nextInt(OPERATIONS.length);
-        firstOperand = random.nextInt(25);
-        secondOperand = random.nextInt(25);
+        final int bound = 25;
+        firstOperand = random.nextInt(bound);
+        secondOperand = random.nextInt(bound);
         operation = OPERATIONS[operationIndex];
         out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
     }

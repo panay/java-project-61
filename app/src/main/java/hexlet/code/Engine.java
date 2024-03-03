@@ -52,9 +52,9 @@ public class Engine {
         SYSTEM_SCANNER.close();
     }
 
-    public static int generateNumberQuestion() {
+    public static int generateNumberQuestion(int randomSize) {
         Random random = new Random();
-        int number = random.nextInt(100);
+        int number = random.nextInt(randomSize);
         out.printf("Question: %s%n", number);
         return number;
     }
