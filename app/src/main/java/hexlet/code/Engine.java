@@ -58,4 +58,32 @@ public class Engine {
         out.printf("Question: %s%n", number);
         return number;
     }
+
+    public static boolean checkAnswer(String answer, int correctAnswer) {
+        boolean isTrue = false;
+        try {
+            final int radix = 10;
+            isTrue = Integer.parseInt(answer, radix) == correctAnswer;
+            if (!isTrue) {
+                printWrong(answer, String.valueOf(correctAnswer));
+            } else {
+                printCorrect();
+            }
+
+            return isTrue;
+        } catch (Exception e) {
+            printWrong(answer, String.valueOf(correctAnswer));
+        }
+
+        return isTrue;
+    }
+
+    public static boolean checkAnswer(String answer, String correctAnswer) {
+        if (correctAnswer.equals(answer)) {
+            printCorrect();
+            return true;
+        }
+        printWrong(answer, correctAnswer);
+        return false;
+    }
 }

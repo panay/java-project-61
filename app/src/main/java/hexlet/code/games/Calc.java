@@ -34,7 +34,6 @@ public class Calc {
 
         String answer = scanner.next();
         int correctAnswer = 0;
-        boolean isTrue = false;
         switch (operation) {
             case '+':
                 correctAnswer = firstOperand + secondOperand;
@@ -48,21 +47,6 @@ public class Calc {
             default:
         }
 
-        try {
-            final int radix = 10;
-            isTrue = Integer.parseInt(answer, radix) == correctAnswer;
-
-            if (!isTrue) {
-                Engine.printWrong(answer, String.valueOf(correctAnswer));
-            } else {
-                Engine.printCorrect();
-            }
-
-            return isTrue;
-        } catch (Exception e) {
-            Engine.printWrong(answer, String.valueOf(correctAnswer));
-        }
-
-        return isTrue;
+        return Engine.checkAnswer(answer, correctAnswer);
     }
 }

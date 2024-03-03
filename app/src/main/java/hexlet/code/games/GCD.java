@@ -37,22 +37,6 @@ public class GCD {
 
         String answer = scanner.next();
         int correctAnswer = calcGCD();
-        boolean isTrue = false;
-        try {
-            final int radix = 10;
-            isTrue = Integer.parseInt(answer, radix) == correctAnswer;
-
-            if (!isTrue) {
-                Engine.printWrong(answer, String.valueOf(correctAnswer));
-            } else {
-                Engine.printCorrect();
-            }
-
-            return isTrue;
-        } catch (Exception e) {
-            Engine.printWrong(answer, String.valueOf(correctAnswer));
-        }
-
-        return isTrue;
+        return Engine.checkAnswer(answer, correctAnswer);
     }
 }

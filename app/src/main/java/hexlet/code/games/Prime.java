@@ -33,14 +33,6 @@ public class Prime {
 
         String answer = scanner.next();
         String correctAnswer = isPrime() ? YES : NO;
-        boolean isTrue = correctAnswer.equals(answer);
-
-        if (!isTrue) {
-            Engine.printWrong(answer, correctAnswer);
-        } else {
-            Engine.printCorrect();
-        }
-
-        return isTrue;
+        return Engine.checkAnswer(answer, correctAnswer);
     }
 }
