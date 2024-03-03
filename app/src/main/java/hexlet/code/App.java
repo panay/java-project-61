@@ -13,25 +13,25 @@ import static java.lang.System.out;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = Engine.getScanner();
-        int chosenGame = chooseGame(scanner);
+        String chosenGame = chooseGame(scanner);
 
         switch (chosenGame) {
-            case 1:
+            case "1":
                 Engine.sayHello();
                 break;
-            case 2:
+            case "2":
                 Even.play();
                 break;
-            case 3:
+            case "3":
                 Calc.play();
                 break;
-            case 4:
+            case "4":
                 GCD.play();
                 break;
-            case 5:
+            case "5":
                 Progression.play();
                 break;
-            case 6:
+            case "6":
                 Prime.play();
                 break;
             default:
@@ -39,7 +39,7 @@ public class App {
         }
     }
 
-    private static int chooseGame(Scanner scanner) {
+    private static String chooseGame(Scanner scanner) {
         out.println("Please enter the game number and press Enter.");
         out.println("1 – Greet");
         out.println("2 – Even");
@@ -48,9 +48,9 @@ public class App {
         out.println("5 – Progression");
         out.println("6 – Prime");
         out.println("0 – Exit");
-        int gameNum = 0;
+        String gameNum = "";
         try {
-            gameNum = scanner.nextInt();
+            gameNum = scanner.next();
             out.println("Your choice: " + gameNum);
         } catch (Exception e) {
             scanner.close();

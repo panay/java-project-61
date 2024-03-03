@@ -28,7 +28,8 @@ public class Prime {
     }
 
     private static boolean checkAnswer(Scanner scanner) {
-        number = Engine.generateNumberQuestion(100);
+        final int bound = 100;
+        number = Engine.generateNumberQuestion(bound);
 
         String answer = scanner.next();
         String correctAnswer = isPrime() ? YES : NO;

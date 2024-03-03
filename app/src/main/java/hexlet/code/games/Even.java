@@ -14,7 +14,8 @@ public class Even {
     }
 
     private static boolean checkAnswer(Scanner scanner) {
-        number = Engine.generateNumberQuestion(100);
+        final int bound = 100;
+        number = Engine.generateNumberQuestion(bound);
 
         String answer = scanner.next();
         String correctAnswer = number % 2 == 0 ? YES : NO;
