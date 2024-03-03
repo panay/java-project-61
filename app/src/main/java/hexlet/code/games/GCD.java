@@ -18,9 +18,8 @@ public class GCD {
     private static void generateQuestion() {
         Random random = new Random();
 
-        int sizeOfGeneratedNumber = 50;
-        firstOperand = random.nextInt(sizeOfGeneratedNumber);
-        secondOperand = random.nextInt(sizeOfGeneratedNumber);
+        firstOperand = random.nextInt(50);
+        secondOperand = random.nextInt(50);
         out.printf("Question: %s %s%n", firstOperand, secondOperand);
     }
 
@@ -40,7 +39,8 @@ public class GCD {
         int correctAnswer = calcGCD();
         boolean isTrue = false;
         try {
-            isTrue = Integer.parseInt(answer, 10) == correctAnswer;
+            final int radix = 10;
+            isTrue = Integer.parseInt(answer, radix) == correctAnswer;
 
             if (!isTrue) {
                 Engine.printWrong(answer, String.valueOf(correctAnswer));

@@ -40,9 +40,9 @@ public class Progression {
 
     private static void generateQuestion() {
         Random random = new Random();
-        int initialProgressionLength = 6;
-        int additionalProgressionLength = 5;
-        int sizeOfDifferenceBetweenNumbers = 10;
+        final int initialProgressionLength = 6;
+        final int additionalProgressionLength = 5;
+        final int sizeOfDifferenceBetweenNumbers = 10;
 
         int length = random.nextInt(initialProgressionLength) + additionalProgressionLength;
         int start = random.nextInt(sizeOfDifferenceBetweenNumbers);
@@ -61,7 +61,8 @@ public class Progression {
         int correctAnswer = hiddenNum;
         boolean isTrue = false;
         try {
-            isTrue = Integer.parseInt(answer, 10) == correctAnswer;
+            final int radix = 10;
+            isTrue = Integer.parseInt(answer, radix) == correctAnswer;
 
             if (!isTrue) {
                 Engine.printWrong(answer, String.valueOf(correctAnswer));

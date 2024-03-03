@@ -17,9 +17,6 @@ public class Engine {
     public static Scanner getScanner() {
         return SYSTEM_SCANNER;
     }
-    public static int getRounds() {
-        return ROUNDS;
-    }
     public static void printCorrect() {
         out.println(CORRECT);
     }
@@ -57,8 +54,7 @@ public class Engine {
 
     public static int generateNumberQuestion() {
         Random random = new Random();
-        int sizeOfGeneratedNumber = 100;
-        int number = random.nextInt(sizeOfGeneratedNumber);
+        int number = random.nextInt(100);
         out.printf("Question: %s%n", number);
         return number;
     }
