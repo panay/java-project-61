@@ -4,6 +4,7 @@ import hexlet.code.games.Even;
 import hexlet.code.games.Calc;
 import hexlet.code.games.GCD;
 import hexlet.code.games.Progression;
+import hexlet.code.games.Prime;
 
 import java.util.Scanner;
 
@@ -30,6 +31,9 @@ public class App {
             case 5:
                 Progression.play();
                 break;
+            case 6:
+                Prime.play();
+                break;
             default:
                 Engine.sayHello();
         }
@@ -43,6 +47,7 @@ public class App {
         out.println("3 – Calc");
         out.println("4 – GCD");
         out.println("5 – Progression");
+        out.println("6 – Prime");
         out.println("0 – Exit");
         int gameNum = scanner.nextInt();
         out.println("Your choice: " + gameNum);

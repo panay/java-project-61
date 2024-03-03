@@ -5,3 +5,4 @@
 2. [Calc game asciinema](https://asciinema.org/a/jomaYTFFYmlZWHQ33vELrtlkU)
 3. [GCD game asciinema](https://asciinema.org/a/fx0BT3dXtoRXs2MleXwZuCcC0)
 4. [Progression game asciinema](https://asciinema.org/a/I8H2s6ObFVFS3tG8bhLHi18v1)
+5. [Prime game asciinema](https://asciinema.org/a/dc5SIkP4dFGvEeiW0NzcHDWBl)
