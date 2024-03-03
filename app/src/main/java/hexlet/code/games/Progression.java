@@ -12,7 +12,7 @@ public class Progression {
     private static int hiddenNum;
 
     public static void play() {
-        String title = "Find the greatest common divisor of given numbers.";
+        String title = "What number is missing in the progression?";
         Engine.play(title, Progression::checkAnswer);
     }
 
