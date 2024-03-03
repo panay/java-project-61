@@ -32,7 +32,8 @@ public class Prime {
 
     private static void generateQuestion() {
         Random random = new Random();
-        number = random.nextInt(100);
+        int sizeOfGeneratedNumber = 100;
+        number = random.nextInt(sizeOfGeneratedNumber);
         out.printf("Question: %s%n", number);
     }
 

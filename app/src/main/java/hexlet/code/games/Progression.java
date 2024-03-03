@@ -51,8 +51,6 @@ public class Progression {
 
         generateArithmeticProgression(start, difference, length);
         hiddenNum = progression[hiddenIndex];
-//        out.printf("Подсказка для теста: %s%n", hiddenNum);
-
         out.printf("Question: %s%n", hideNumber(hiddenIndex));
     }
 

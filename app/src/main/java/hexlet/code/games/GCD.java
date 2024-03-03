@@ -18,8 +18,9 @@ public class GCD {
     private static void generateQuestion() {
         Random random = new Random();
 
-        firstOperand = random.nextInt(50);
-        secondOperand = random.nextInt(50);
+        int sizeOfGeneratedNumber = 50;
+        firstOperand = random.nextInt(sizeOfGeneratedNumber);
+        secondOperand = random.nextInt(sizeOfGeneratedNumber);
         out.printf("Question: %s %s%n", firstOperand, secondOperand);
     }
 

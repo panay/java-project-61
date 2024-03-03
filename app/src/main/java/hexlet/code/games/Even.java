@@ -18,7 +18,8 @@ public class Even {
 
     private static void generateQuestion() {
         Random random = new Random();
-        digit = random.nextInt(100);
+        int sizeOfGeneratedNumber = 100;
+        digit = random.nextInt(sizeOfGeneratedNumber);
         out.printf("Question: %s%n", digit);
     }
 

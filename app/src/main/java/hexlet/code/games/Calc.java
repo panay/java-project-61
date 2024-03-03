@@ -21,9 +21,10 @@ public class Calc {
     private static void generateQuestion() {
         Random random = new Random();
 
+        int sizeOfGeneratedNumber = 25;
         int operationIndex = random.nextInt(OPERATIONS.length);
-        firstOperand = random.nextInt(25);
-        secondOperand = random.nextInt(25);
+        firstOperand = random.nextInt(sizeOfGeneratedNumber);
+        secondOperand = random.nextInt(sizeOfGeneratedNumber);
         operation = OPERATIONS[operationIndex];
         out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
     }
@@ -46,6 +47,7 @@ public class Calc {
                 break;
             default:
         }
+
         try {
             isTrue = Integer.parseInt(answer, 10) == correctAnswer;
 
