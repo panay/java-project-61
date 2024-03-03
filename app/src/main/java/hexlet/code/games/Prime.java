@@ -2,10 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-import java.util.Random;
 import java.util.Scanner;
-
-import static java.lang.System.out;
 
 public class Prime {
     private static final String YES = "yes";
@@ -30,15 +27,8 @@ public class Prime {
         return true;
     }
 
-    private static void generateQuestion() {
-        Random random = new Random();
-        int sizeOfGeneratedNumber = 100;
-        number = random.nextInt(sizeOfGeneratedNumber);
-        out.printf("Question: %s%n", number);
-    }
-
     private static boolean checkAnswer(Scanner scanner) {
-        generateQuestion();
+        number = Engine.generateNumberQuestion();
 
         String answer = scanner.next();
         String correctAnswer = isPrime() ? YES : NO;

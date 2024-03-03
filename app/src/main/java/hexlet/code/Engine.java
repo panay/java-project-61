@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Function;
 
@@ -52,5 +53,13 @@ public class Engine {
         Engine.printCongrats();
 
         SYSTEM_SCANNER.close();
+    }
+
+    public static int generateNumberQuestion() {
+        Random random = new Random();
+        int sizeOfGeneratedNumber = 100;
+        int number = random.nextInt(sizeOfGeneratedNumber);
+        out.printf("Question: %s%n", number);
+        return number;
     }
 }
