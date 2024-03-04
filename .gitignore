@@ -50,3 +50,5 @@ bin/
 /app/.idea/misc.xml
 /.idea/vcs.xml
 /app/.idea/vcs.xml
+/app/.idea/uiDesigner.xml
+/.idea/uiDesigner.xml
