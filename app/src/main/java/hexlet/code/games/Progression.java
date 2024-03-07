@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import static java.lang.System.in;
 
 public class Progression {
     private static int[] progression;
@@ -13,7 +14,11 @@ public class Progression {
 
     public static void play() {
         String title = "What number is missing in the progression?";
-        Engine.play(title, Progression::checkAnswer);
+        try {
+            Engine.play(title, Progression::checkAnswer);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void generateArithmeticProgression(int start, int difference, int length) {
@@ -54,9 +59,9 @@ public class Progression {
         out.printf("Question: %s%n", hideNumber(hiddenIndex));
     }
 
-    private static boolean checkAnswer(Scanner scanner) {
+    private static boolean checkAnswer() {
         generateQuestion();
-
+        Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         int correctAnswer = hiddenNum;
         return Engine.checkAnswer(answer, correctAnswer);

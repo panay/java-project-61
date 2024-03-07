@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import static java.lang.System.in;
 
 public class Calc {
     private static int firstOperand;
@@ -15,7 +16,11 @@ public class Calc {
 
     public static void play() {
         String title = "What is the result of the expression?";
-        Engine.play(title, Calc::checkAnswer);
+        try {
+            Engine.play(title, Calc::checkAnswer);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void generateQuestion() {
@@ -29,9 +34,10 @@ public class Calc {
         out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
     }
 
-    private static boolean checkAnswer(Scanner scanner) {
+    private static boolean checkAnswer() {
         generateQuestion();
 
+        Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         int correctAnswer = 0;
         switch (operation) {

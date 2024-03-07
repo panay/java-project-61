@@ -4,6 +4,8 @@ import hexlet.code.Engine;
 
 import java.util.Scanner;
 
+import static java.lang.System.in;
+
 public class Prime {
     private static final String YES = "yes";
     private static final String NO = "no";
@@ -11,7 +13,11 @@ public class Prime {
 
     public static void play() {
         String title = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-        Engine.play(title, Prime::checkAnswer);
+        try {
+            Engine.play(title, Prime::checkAnswer);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static boolean isPrime() {
@@ -27,10 +33,11 @@ public class Prime {
         return true;
     }
 
-    private static boolean checkAnswer(Scanner scanner) {
+    private static boolean checkAnswer() {
         final int bound = 100;
         number = Engine.generateNumberQuestion(bound);
 
+        Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         String correctAnswer = isPrime() ? YES : NO;
         return Engine.checkAnswer(answer, correctAnswer);

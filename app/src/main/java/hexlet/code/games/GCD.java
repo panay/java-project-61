@@ -6,13 +6,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import static java.lang.System.in;
 
 public class GCD {
     private static int firstOperand;
     private static int secondOperand;
     public static void play() {
         String title = "Find the greatest common divisor of given numbers.";
-        Engine.play(title, GCD::checkAnswer);
+        try {
+            Engine.play(title, GCD::checkAnswer);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void generateQuestion() {
@@ -32,9 +37,10 @@ public class GCD {
         return firstOperand;
     }
 
-    private static boolean checkAnswer(Scanner scanner) {
+    private static boolean checkAnswer() {
         generateQuestion();
 
+        Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         int correctAnswer = calcGCD();
         return Engine.checkAnswer(answer, correctAnswer);

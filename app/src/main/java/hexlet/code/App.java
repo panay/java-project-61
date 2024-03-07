@@ -9,37 +9,14 @@ import hexlet.code.games.Prime;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import static java.lang.System.in;
 
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = Engine.getScanner();
-        String chosenGame = chooseGame(scanner);
-
-        switch (chosenGame) {
-            case "1":
-                Engine.sayHello();
-                break;
-            case "2":
-                Even.play();
-                break;
-            case "3":
-                Calc.play();
-                break;
-            case "4":
-                GCD.play();
-                break;
-            case "5":
-                Progression.play();
-                break;
-            case "6":
-                Prime.play();
-                break;
-            default:
-                scanner.close();
-        }
+        chooseGame();
     }
 
-    private static String chooseGame(Scanner scanner) {
+    private static void chooseGame() {
         out.println("Please enter the game number and press Enter.");
         out.println("1 – Greet");
         out.println("2 – Even");
@@ -48,14 +25,36 @@ public class App {
         out.println("5 – Progression");
         out.println("6 – Prime");
         out.println("0 – Exit");
-        String gameNum = "";
+        String chosenGame = "";
+        Scanner scanner = new Scanner(in);
         try {
-            gameNum = scanner.next();
-            out.println("Your choice: " + gameNum);
+            chosenGame = scanner.next();
+            out.println("Your choice: " + chosenGame);
+
+            switch (chosenGame) {
+                case "1":
+                    Cli.sayHello();
+                    break;
+                case "2":
+                    Even.play();
+                    break;
+                case "3":
+                    Calc.play();
+                    break;
+                case "4":
+                    GCD.play();
+                    break;
+                case "5":
+                    Progression.play();
+                    break;
+                case "6":
+                    Prime.play();
+                    break;
+                default:
+                    scanner.close();
+            }
         } catch (Exception e) {
             scanner.close();
         }
-
-        return gameNum;
     }
 }
