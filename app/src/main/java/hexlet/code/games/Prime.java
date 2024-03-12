@@ -36,7 +36,9 @@ public class Prime {
     }
 
     private static boolean checkAnswer() {
-        number = Utils.generateRandomInt(0, 100);
+        final int from = 0;
+        final int to = 100;
+        number = Utils.generateRandomInt(from, to);
         out.printf("Question: %s%n", number);
 
         Scanner scanner = new Scanner(in);

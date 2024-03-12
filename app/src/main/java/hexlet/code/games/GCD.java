@@ -21,8 +21,10 @@ public class GCD {
     }
 
     private static void generateQuestion() {
-        firstOperand = Utils.generateRandomInt(0, 50);
-        secondOperand = Utils.generateRandomInt(0, 50);
+        final int from = 0;
+        final int to = 50;
+        firstOperand = Utils.generateRandomInt(from, to);
+        secondOperand = Utils.generateRandomInt(from, to);
         out.printf("Question: %s %s%n", firstOperand, secondOperand);
     }
 

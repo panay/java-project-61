@@ -22,7 +22,9 @@ public class Even {
     }
 
     private static boolean checkAnswer() {
-        final int number = Utils.generateRandomInt(0, 100);
+        final int from = 0;
+        final int to = 100;
+        final int number = Utils.generateRandomInt(from, to);
         out.printf("Question: %s%n", number);
 
         Scanner scanner = new Scanner(in);
