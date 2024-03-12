@@ -1,8 +1,8 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -21,10 +21,8 @@ public class GCD {
     }
 
     private static void generateQuestion() {
-        Random random = new Random();
-        final int bound = 50;
-        firstOperand = random.nextInt(bound);
-        secondOperand = random.nextInt(bound);
+        firstOperand = Utils.generateRandomInt(0, 50);
+        secondOperand = Utils.generateRandomInt(0, 50);
         out.printf("Question: %s %s%n", firstOperand, secondOperand);
     }
 

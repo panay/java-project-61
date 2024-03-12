@@ -1,9 +1,12 @@
 package hexlet.code.games;
 
 import  hexlet.code.Engine;
+import hexlet.code.Utils;
+
 import java.util.Scanner;
 
 import static java.lang.System.in;
+import static java.lang.System.out;
 
 public class Even {
     private static final String YES = "yes";
@@ -19,8 +22,8 @@ public class Even {
     }
 
     private static boolean checkAnswer() {
-        final int bound = 100;
-        final int number = Engine.generateNumberQuestion(bound);
+        final int number = Utils.generateRandomInt(0, 100);
+        out.printf("Question: %s%n", number);
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();

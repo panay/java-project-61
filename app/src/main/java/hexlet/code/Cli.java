@@ -6,7 +6,7 @@ import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class Cli {
-    public static void sayHello() {
+    public static void greetings() {
         Scanner scanner = new Scanner(in);
         out.println("Welcome to the Brain Games!");
         out.println("May I have your name?");

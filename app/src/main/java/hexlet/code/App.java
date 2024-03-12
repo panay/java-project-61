@@ -25,36 +25,35 @@ public class App {
         out.println("5 – Progression");
         out.println("6 – Prime");
         out.println("0 – Exit");
-        String chosenGame = "";
         Scanner scanner = new Scanner(in);
-        try {
-            chosenGame = scanner.next();
-            out.println("Your choice: " + chosenGame);
 
-            switch (chosenGame) {
-                case "1":
-                    Cli.sayHello();
-                    break;
-                case "2":
-                    Even.play();
-                    break;
-                case "3":
-                    Calc.play();
-                    break;
-                case "4":
-                    GCD.play();
-                    break;
-                case "5":
-                    Progression.play();
-                    break;
-                case "6":
-                    Prime.play();
-                    break;
-                default:
-                    scanner.close();
-            }
-        } catch (Exception e) {
-            scanner.close();
+        String chosenGame = scanner.next();
+        out.println("Your choice: " + chosenGame);
+
+        switch (chosenGame) {
+            case "1":
+                Cli.greetings();
+                break;
+            case "2":
+                Even.play();
+                break;
+            case "3":
+                Calc.play();
+                break;
+            case "4":
+                GCD.play();
+                break;
+            case "5":
+                Progression.play();
+                break;
+            case "6":
+                Prime.play();
+                break;
+            default:
+                out.println("Выбрана несуществующая игра."
+                        + "Пожалуйста, выберите числа от 2 до 6."
+                        + "Если хотите увидеть приветствие - выберите 1");
+                scanner.close();
         }
     }
 }

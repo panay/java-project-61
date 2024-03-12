@@ -34,12 +34,12 @@ public class Calc {
         out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
     }
 
-    private static boolean checkAnswer() {
+    private static boolean checkAnswer() throws Exception {
         generateQuestion();
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
-        int correctAnswer = 0;
+        int correctAnswer;
         switch (operation) {
             case '+':
                 correctAnswer = firstOperand + secondOperand;
@@ -51,6 +51,7 @@ public class Calc {
                 correctAnswer = firstOperand * secondOperand;
                 break;
             default:
+                throw new Exception("no such operator");
         }
 
         return Engine.checkAnswer(answer, correctAnswer);
