@@ -47,12 +47,13 @@ public class Progression {
         final int initialProgressionLength = 6;
         final int additionalProgressionLength = 5;
         final int sizeOfDifferenceBetweenNumbers = 10;
+        final int from = 0;
 
         int length = Utils.generateRandomInt(initialProgressionLength,
                 (initialProgressionLength) + additionalProgressionLength);
-        int start = Utils.generateRandomInt(0, sizeOfDifferenceBetweenNumbers);
-        int difference = Utils.generateRandomInt(0, sizeOfDifferenceBetweenNumbers);
-        int hiddenIndex = Utils.generateRandomInt(0, length);
+        int start = Utils.generateRandomInt(from, sizeOfDifferenceBetweenNumbers);
+        int difference = Utils.generateRandomInt(from, sizeOfDifferenceBetweenNumbers);
+        int hiddenIndex = Utils.generateRandomInt(from, length);
 
         generateArithmeticProgression(start, difference, length);
         out.printf("Question: %s%n", hideNumber(hiddenIndex));
