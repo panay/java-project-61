@@ -11,14 +11,18 @@ import static java.lang.System.out;
 public class Even {
     private static final String YES = "yes";
     private static final String NO = "no";
+    private static final String TITLE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
     public static void play() {
-        String title = "Answer 'yes' if the number is even, otherwise answer 'no'.";
         try {
-            Engine.play(title, Even::checkAnswer);
+            Engine.play(TITLE, Even::checkAnswer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static boolean getCorrectAnswer(int number) {
+        return number % 2 == 0;
     }
 
     private static boolean checkAnswer() {
@@ -29,7 +33,7 @@ public class Even {
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
-        String correctAnswer = number % 2 == 0 ? YES : NO;
+        String correctAnswer = getCorrectAnswer(number) ? YES : NO;
         return Engine.checkAnswer(answer, correctAnswer);
     }
 }

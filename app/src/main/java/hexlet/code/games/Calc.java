@@ -1,8 +1,8 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -13,46 +13,35 @@ public class Calc {
     private static int secondOperand;
     private static char operation;
     private static final char[] OPERATIONS = {'+', '-', '*'};
+    private static final String TITLE = "What is the result of the expression?";
 
     public static void play() {
-        String title = "What is the result of the expression?";
         try {
-            Engine.play(title, Calc::checkAnswer);
+            Engine.play(TITLE, Calc::checkAnswer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static void generateQuestion() {
-        Random random = new Random();
-
-        int operationIndex = random.nextInt(OPERATIONS.length);
-        final int bound = 25;
-        firstOperand = random.nextInt(bound);
-        secondOperand = random.nextInt(bound);
-        operation = OPERATIONS[operationIndex];
-        out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
+    private static int getCorrectAnswer() throws Exception {
+        return switch (operation) {
+            case '+' -> firstOperand + secondOperand;
+            case '-' -> firstOperand - secondOperand;
+            case '*' -> firstOperand * secondOperand;
+            default -> throw new Exception("no such operator");
+        };
     }
 
     private static boolean checkAnswer() throws Exception {
-        generateQuestion();
+        int operationIndex = Utils.generateRandomInt(0, OPERATIONS.length);
+        firstOperand = Utils.generateRandomInt(0, 25);
+        secondOperand = Utils.generateRandomInt(0, 25);
+        operation = OPERATIONS[operationIndex];
+        out.printf("Question: %s %s %s%n", firstOperand, operation, secondOperand);
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
-        int correctAnswer;
-        switch (operation) {
-            case '+':
-                correctAnswer = firstOperand + secondOperand;
-                break;
-            case '-':
-                correctAnswer = firstOperand - secondOperand;
-                break;
-            case '*':
-                correctAnswer = firstOperand * secondOperand;
-                break;
-            default:
-                throw new Exception("no such operator");
-        }
+        int correctAnswer = getCorrectAnswer();
 
         return Engine.checkAnswer(answer, correctAnswer);
     }

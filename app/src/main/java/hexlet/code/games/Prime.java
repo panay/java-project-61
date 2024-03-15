@@ -11,23 +11,22 @@ import static java.lang.System.out;
 public class Prime {
     private static final String YES = "yes";
     private static final String NO = "no";
-    private static int number;
+    private static final String TITLE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void play() {
-        String title = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
         try {
-            Engine.play(title, Prime::checkAnswer);
+            Engine.play(TITLE, Prime::checkAnswer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static boolean isPrime() {
+    private static boolean isPrime(int number) {
         if (number <= 1) {
             return false;
         }
 
-        for (int i = 2; i * i <= number; i++) {
+        for (int i = 2; i * i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
                 return false;
             }
@@ -38,12 +37,12 @@ public class Prime {
     private static boolean checkAnswer() {
         final int from = 0;
         final int to = 100;
-        number = Utils.generateRandomInt(from, to);
+        int number = Utils.generateRandomInt(from, to);
         out.printf("Question: %s%n", number);
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
-        String correctAnswer = isPrime() ? YES : NO;
+        String correctAnswer = isPrime(number) ? YES : NO;
         return Engine.checkAnswer(answer, correctAnswer);
     }
 }

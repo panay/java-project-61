@@ -1,21 +1,21 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.System.out;
 import static java.lang.System.in;
 
 public class Progression {
+    private static final String TITLE = "What number is missing in the progression?";
     private static int[] progression;
     private static int hiddenNum;
 
     public static void play() {
-        String title = "What number is missing in the progression?";
         try {
-            Engine.play(title, Progression::checkAnswer);
+            Engine.play(TITLE, Progression::checkAnswer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -43,24 +43,20 @@ public class Progression {
         return sb.toString();
     }
 
-    private static void generateQuestion() {
-        Random random = new Random();
+    private static boolean checkAnswer() {
         final int initialProgressionLength = 6;
         final int additionalProgressionLength = 5;
         final int sizeOfDifferenceBetweenNumbers = 10;
 
-        int length = random.nextInt(initialProgressionLength) + additionalProgressionLength;
-        int start = random.nextInt(sizeOfDifferenceBetweenNumbers);
-        int difference = random.nextInt(sizeOfDifferenceBetweenNumbers);
-        int hiddenIndex = random.nextInt(length);
+        int length = Utils.generateRandomInt(initialProgressionLength,
+                (initialProgressionLength) + additionalProgressionLength);
+        int start = Utils.generateRandomInt(0, sizeOfDifferenceBetweenNumbers);
+        int difference = Utils.generateRandomInt(0, sizeOfDifferenceBetweenNumbers);
+        int hiddenIndex = Utils.generateRandomInt(0, length);
 
         generateArithmeticProgression(start, difference, length);
-        hiddenNum = progression[hiddenIndex];
         out.printf("Question: %s%n", hideNumber(hiddenIndex));
-    }
 
-    private static boolean checkAnswer() {
-        generateQuestion();
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         int correctAnswer = hiddenNum;

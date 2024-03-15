@@ -9,26 +9,17 @@ import static java.lang.System.out;
 import static java.lang.System.in;
 
 public class GCD {
-    private static int firstOperand;
-    private static int secondOperand;
+    private static final String TITLE = "Find the greatest common divisor of given numbers.";
+
     public static void play() {
-        String title = "Find the greatest common divisor of given numbers.";
         try {
-            Engine.play(title, GCD::checkAnswer);
+            Engine.play(TITLE, GCD::checkAnswer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static void generateQuestion() {
-        final int from = 0;
-        final int to = 50;
-        firstOperand = Utils.generateRandomInt(from, to);
-        secondOperand = Utils.generateRandomInt(from, to);
-        out.printf("Question: %s %s%n", firstOperand, secondOperand);
-    }
-
-    private static int calcGCD() {
+    private static int getCorrectAnswer(int firstOperand, int secondOperand) {
         while (secondOperand != 0) {
             int temp = secondOperand;
             secondOperand = firstOperand % secondOperand;
@@ -38,11 +29,15 @@ public class GCD {
     }
 
     private static boolean checkAnswer() {
-        generateQuestion();
+        final int from = 0;
+        final int to = 50;
+        int firstOperand = Utils.generateRandomInt(from, to);
+        int secondOperand = Utils.generateRandomInt(from, to);
+        out.printf("Question: %s %s%n", firstOperand, secondOperand);
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
-        int correctAnswer = calcGCD();
+        int correctAnswer = getCorrectAnswer(firstOperand, secondOperand);
         return Engine.checkAnswer(answer, correctAnswer);
     }
 }
