@@ -11,12 +11,12 @@ public class Engine {
     private static String userAnswer;
     private static String correctAnswer;
 
-    public static void setUserAnswer(String userAnswer) {
-        Engine.userAnswer = userAnswer;
+    public static void setUserAnswer(String value) {
+        userAnswer = value;
     }
 
-    public static void setCorrectAnswer(String correctAnswer) {
-        Engine.correctAnswer = correctAnswer;
+    public static void setCorrectAnswer(String value) {
+        correctAnswer = value;
     }
 
     public static void play(String title, Callable<Boolean> checkAnswerFn) {
