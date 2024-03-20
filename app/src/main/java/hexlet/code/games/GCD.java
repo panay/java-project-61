@@ -12,11 +12,7 @@ public class GCD {
     private static final String TITLE = "Find the greatest common divisor of given numbers.";
 
     public static void play() {
-        try {
-            Engine.play(TITLE, GCD::checkAnswer);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Engine.play(TITLE, GCD::checkAnswer);
     }
 
     private static int getCorrectAnswer(int firstOperand, int secondOperand) {
@@ -38,6 +34,10 @@ public class GCD {
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         int correctAnswer = getCorrectAnswer(firstOperand, secondOperand);
-        return Engine.checkAnswer(answer, correctAnswer);
+
+        Engine.setUserAnswer(answer);
+        Engine.setCorrectAnswer(String.valueOf(correctAnswer));
+
+        return Integer.parseInt(answer) == correctAnswer;
     }
 }

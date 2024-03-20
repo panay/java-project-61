@@ -14,14 +14,10 @@ public class Even {
     private static final String TITLE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
     public static void play() {
-        try {
-            Engine.play(TITLE, Even::checkAnswer);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Engine.play(TITLE, Even::checkAnswer);
     }
 
-    private static boolean getCorrectAnswer(int number) {
+    private static boolean isEven(int number) {
         return number % 2 == 0;
     }
 
@@ -33,7 +29,11 @@ public class Even {
 
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
-        String correctAnswer = getCorrectAnswer(number) ? YES : NO;
-        return Engine.checkAnswer(answer, correctAnswer);
+        String correctAnswer = isEven(number) ? YES : NO;
+
+        Engine.setUserAnswer(answer);
+        Engine.setCorrectAnswer(correctAnswer);
+
+        return correctAnswer.equals(answer);
     }
 }

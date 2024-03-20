@@ -14,11 +14,7 @@ public class Prime {
     private static final String TITLE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void play() {
-        try {
-            Engine.play(TITLE, Prime::checkAnswer);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Engine.play(TITLE, Prime::checkAnswer);
     }
 
     private static boolean isPrime(int number) {
@@ -43,6 +39,10 @@ public class Prime {
         Scanner scanner = new Scanner(in);
         String answer = scanner.next();
         String correctAnswer = isPrime(number) ? YES : NO;
-        return Engine.checkAnswer(answer, correctAnswer);
+
+        Engine.setUserAnswer(answer);
+        Engine.setCorrectAnswer(correctAnswer);
+
+        return correctAnswer.equals(answer);
     }
 }
