@@ -3,10 +3,7 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import java.util.Scanner;
-
-import static java.lang.System.out;
-import static java.lang.System.in;
+import java.util.Arrays;
 
 public class Progression {
     private static final String TITLE = "What number is missing in the progression?";
@@ -16,10 +13,10 @@ public class Progression {
     private static final int FROM = 0;
 
     public static void play() {
-        Engine.play(TITLE, Progression::checkAnswer);
+        Engine.play(TITLE, checkAnswer());
     }
 
-    private static int[] generateProgression(int start, int difference, int length) {
+    private static String[] generateProgression(int start, int difference, int length) {
         int[] progression = new int[length];
         progression[0] = start;
 
@@ -27,38 +24,29 @@ public class Progression {
             progression[i] = progression[i - 1] + difference;
         }
 
-        return progression;
+        return Arrays.toString(progression).split("[\\[\\]]")[1].split(", ");
     }
 
-    private static String hideNumber(int[] progression, int hiddenIndex) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < progression.length; i++) {
-            if (i == hiddenIndex) {
-                sb.append(".. ");
-            } else {
-                sb.append(progression[i]).append(" ");
-            }
+    private static String[][] checkAnswer() {
+        final int rounds = Engine.getRounds();
+        String[][] engineData = new String[rounds][rounds];
+
+        for (int i = 0; i < rounds; i++) {
+            int length = Utils.generateRandomInt(INITIAL_PROGRESSION_LENGTH,
+                    (INITIAL_PROGRESSION_LENGTH) + ADDITIONAL_PROGRESSION_LENGTH);
+            int start = Utils.generateRandomInt(FROM, SIZE_OF_DIFFERENCE_BETWEEN_NUMBERS);
+            int difference = Utils.generateRandomInt(FROM, SIZE_OF_DIFFERENCE_BETWEEN_NUMBERS);
+            int hiddenIndex = Utils.generateRandomInt(FROM, length);
+
+            String[] progression = generateProgression(start, difference, length);
+            String hiddenNum = progression[hiddenIndex];
+            progression[hiddenIndex] = "..";
+            String question = String.format("Question: %s%n", String.join(" ", progression));
+
+            engineData[i][0] = question;
+            engineData[i][1] = hiddenNum;
         }
-        return sb.toString();
-    }
 
-    private static boolean checkAnswer() {
-        int length = Utils.generateRandomInt(INITIAL_PROGRESSION_LENGTH,
-                (INITIAL_PROGRESSION_LENGTH) + ADDITIONAL_PROGRESSION_LENGTH);
-        int start = Utils.generateRandomInt(FROM, SIZE_OF_DIFFERENCE_BETWEEN_NUMBERS);
-        int difference = Utils.generateRandomInt(FROM, SIZE_OF_DIFFERENCE_BETWEEN_NUMBERS);
-        int hiddenIndex = Utils.generateRandomInt(FROM, length);
-
-        int[] progression = generateProgression(start, difference, length);
-        int hiddenNum = progression[hiddenIndex];
-        out.printf("Question: %s%n", hideNumber(progression, hiddenIndex));
-
-        Scanner scanner = new Scanner(in);
-        String answer = scanner.next();
-
-        Engine.setUserAnswer(answer);
-        Engine.setCorrectAnswer(String.valueOf(hiddenNum));
-
-        return Integer.parseInt(answer) == hiddenNum;
+        return engineData;
     }
 }

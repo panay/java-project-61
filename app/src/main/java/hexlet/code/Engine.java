@@ -1,25 +1,18 @@
 package hexlet.code;
 
 import java.util.Scanner;
-import java.util.concurrent.Callable;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class Engine {
     private static final int ROUNDS = 3;
-    private static String userAnswer;
-    private static String correctAnswer;
 
-    public static void setUserAnswer(String value) {
-        userAnswer = value;
+    public static int getRounds() {
+        return ROUNDS;
     }
 
-    public static void setCorrectAnswer(String value) {
-        correctAnswer = value;
-    }
-
-    public static void play(String title, Callable<Boolean> checkAnswerFn) {
+    public static void play(String title, String[][] gameData) {
         Scanner scanner = new Scanner(in);
         out.println("Welcome to the Brain Games!");
         out.println("May I have your name?");
@@ -28,8 +21,11 @@ public class Engine {
         out.println(title);
 
         for (int i = 0; i < ROUNDS; i++) {
+            out.println(gameData[i][0]);
+            String userAnswer = scanner.next();
+            String correctAnswer = gameData[i][1];
             try {
-                boolean isTrue = checkAnswerFn.call();
+                boolean isTrue = correctAnswer.equals(userAnswer);
                 if (!isTrue) {
                     out.printf("'%s' is wrong answer ;(. Correct answer was '%s'%n", userAnswer, correctAnswer);
                     out.printf("Let's try again, %s!%n", name);

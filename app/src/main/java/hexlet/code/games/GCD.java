@@ -3,16 +3,11 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import java.util.Scanner;
-
-import static java.lang.System.out;
-import static java.lang.System.in;
-
 public class GCD {
     private static final String TITLE = "Find the greatest common divisor of given numbers.";
 
     public static void play() {
-        Engine.play(TITLE, GCD::checkAnswer);
+        Engine.play(TITLE, checkAnswer());
     }
 
     private static int getCorrectAnswer(int firstOperand, int secondOperand) {
@@ -24,20 +19,22 @@ public class GCD {
         return firstOperand;
     }
 
-    private static boolean checkAnswer() {
+    private static String[][] checkAnswer() {
         final int from = 0;
         final int to = 50;
-        int firstOperand = Utils.generateRandomInt(from, to);
-        int secondOperand = Utils.generateRandomInt(from, to);
-        out.printf("Question: %s %s%n", firstOperand, secondOperand);
+        final int rounds = Engine.getRounds();
+        String[][] engineData = new String[rounds][rounds];
 
-        Scanner scanner = new Scanner(in);
-        String answer = scanner.next();
-        int correctAnswer = getCorrectAnswer(firstOperand, secondOperand);
+        for (int i = 0; i < rounds; i++) {
+            int firstOperand = Utils.generateRandomInt(from, to);
+            int secondOperand = Utils.generateRandomInt(from, to);
+            String question = String.format("Question: %s %s%n", firstOperand, secondOperand);
+            String correctAnswer = String.valueOf(getCorrectAnswer(firstOperand, secondOperand));
 
-        Engine.setUserAnswer(answer);
-        Engine.setCorrectAnswer(String.valueOf(correctAnswer));
+            engineData[i][0] = question;
+            engineData[i][1] = correctAnswer;
+        }
 
-        return Integer.parseInt(answer) == correctAnswer;
+        return engineData;
     }
 }

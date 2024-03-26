@@ -13,10 +13,6 @@ import static java.lang.System.in;
 
 public class App {
     public static void main(String[] args) {
-        chooseGame();
-    }
-
-    private static void chooseGame() {
         out.println("Please enter the game number and press Enter.");
         out.println("1 – Greet");
         out.println("2 – Even");
